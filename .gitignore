@@ -1,0 +1,6 @@
+
+*.pyc
+*.db
+bin/
+lib/
+include/
