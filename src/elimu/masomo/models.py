@@ -37,6 +37,9 @@ class Subject(models.Model):
         description = models.TextField("Description", max_length=255)
         def __unicode__(self):
 		return self.name
+        @models.permalink
+        def get_absolute_url(self):
+                return ('curricula',(),{})
 # we now link the entities to the profiles
 class Curriculumdev(Profiles):
         surname = models.CharField("Surname", max_length=25)
@@ -65,6 +68,9 @@ class Chapter(models.Model):
         description = models.TextField("Description", max_length=255)
         def __unicode__(self):
 		return self.title
+        @models.permalink
+        def get_absolute_url(self):
+                return ('chapter',(),{})
 class Constraint(models.Model):
 	value = models.TextField("Value", max_length=255)
         def __unicode__(self):
@@ -74,9 +80,17 @@ class Topic(models.Model):
         title = models.CharField("title", max_length=25)
         def __unicode__(self):
 		return self.chapter
+        @models.permalink
+        def get_absolute_url(self):
+                return ('topic',(),{})
+
 class Page(models.Model):
         topic = models.ForeignKey(Topic)
         pagelabel = models.CharField("Label", max_length=25)
+        @models.permalink
+        def get_absolute_url(self):
+                return ('page',(),{})
+
 class ContentType(models.Model):
 	name = models.CharField("Content Type", max_length=45)
         description = models.TextField("Description", max_length=255)
@@ -91,6 +105,10 @@ class Content(models.Model):
         page = models.ForeignKey(Page)
         def __unicode__(self):
 		return self.title
+        @models.permalink
+        def get_absolute_url(self):
+                return ('content',(),{})
+
 class Quiz(models.Model):
 	quizname = models.CharField("Quiz", max_length=45)
         subject = models.ForeignKey(Subject)
