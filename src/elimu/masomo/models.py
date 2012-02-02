@@ -70,7 +70,7 @@ class Chapter(models.Model):
 		return self.title
         @models.permalink
         def get_absolute_url(self):
-                return ('chapter',(),{})
+                return ('chapters',(),{})
 class Constraint(models.Model):
 	value = models.TextField("Value", max_length=255)
         def __unicode__(self):
@@ -82,14 +82,14 @@ class Topic(models.Model):
 		return self.chapter
         @models.permalink
         def get_absolute_url(self):
-                return ('topic',(),{})
+                return ('topics',(),{})
 
 class Page(models.Model):
         topic = models.ForeignKey(Topic)
         pagelabel = models.CharField("Label", max_length=25)
         @models.permalink
         def get_absolute_url(self):
-                return ('page',(),{})
+                return ('pages',(),{})
 
 class ContentType(models.Model):
 	name = models.CharField("Content Type", max_length=45)
