@@ -9,7 +9,22 @@
             <li id="tab_profile"><a href="{% url profile_detail user.username %}">{% trans "Profile" %}</a></li>
             <li id="tab_notices"><a href="{% url notification_notices %}">{% trans "Notices" %}{% if notice_unseen_count %} ({{ notice_unseen_count }}){% endif %}</a></li>
 {% if  user.get_profile.usergroup == 'Curriculum Developer' %}
-<li id="tab_cdevs"><a href="{% url curricula %}">Manage Curriula</a></li>
+
+<li class="dropdown" id="tab_cdevs">
+    <a class="dropdown-toggle" data-toggle="dropdown" href="{% url curricula %}">Manage Curricula
+      <b class="caret"></b>
+    </a>
+    <ul class="dropdown-menu">
+      <li><a href="{% url curricula %}"> Manage Subjects </a>
+      <li><a href="{% url chapters %}">Manage chapters</a></li>
+      <li><a href="{% url topics %}">Manage topics</a></li>
+      <li><a href="{% url pages %}">Manage Pages</a></li>
+      <li class="divider"></li>
+      <li><a href="#">Manage content</a></li>
+    </ul>
+  </li>
+
+
 {% endif %}
         {% endspaceless %}</ul>
     {% endif %}
