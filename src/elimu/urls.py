@@ -2,7 +2,7 @@ from django.conf import settings
 from django.conf.urls.defaults import *
 from django.views.generic.simple import direct_to_template
 from django.views.generic import ListView,CreateView
-from masomo.models import Subject,Chapter,Topic,Page
+from masomo.models import Subject,Chapter,Topic,Page,Content
 
 from django.contrib import admin
 admin.autodiscover()
@@ -30,6 +30,8 @@ urlpatterns = patterns("",
     url(r"^topics/create/",CreateView.as_view(model=Chapter),name="topic-form" ),
     url(r"^pages/$",ListView.as_view(model=Page),name="pages" ),
     url(r"^pages/create/",CreateView.as_view(model=Page),name="page-form" ),
+    url(r"^content/$",ListView.as_view(model=Content),name="content" ),
+    url(r"^content/create/",CreateView.as_view(model=Content),name="content-form" ),
     url(r"^profiles/", include("idios.urls")),
     url(r"^notices/", include("notification.urls")),
     url(r"^announcements/", include("announcements.urls")),

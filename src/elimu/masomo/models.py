@@ -88,7 +88,7 @@ class Content(models.Model):
 	description = models.TextField("Description", max_length=255)
 	value = models.TextField("Value", max_length=255)
         resource = models.FileField(upload_to='resources')
-        contenttype = models.ForeignKey(ContentType)
+        page = models.ForeignKey(Page)
         def __unicode__(self):
 		return self.title
 class Quiz(models.Model):

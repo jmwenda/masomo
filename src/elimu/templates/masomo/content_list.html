@@ -1,0 +1,11 @@
+{% extends "site_base.html" %}
+
+{% block body %}
+    <h2>Content</h2>
+    <a href="{% url content-form %}">New</a>
+    <ul>
+        {% for subjects in object_list %}
+            <li>{{ subjects.title }}</li>
+        {% endfor %}
+    </ul>
+{% endblock %}
