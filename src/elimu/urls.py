@@ -36,6 +36,7 @@ urlpatterns = patterns("",
     url(r"^notices/", include("notification.urls")),
     url(r"^announcements/", include("announcements.urls")),
     url(r'^chaining/', include('smart_selects.urls')),
+    url(r'^api/', include('api.urls')),
 )
 
 

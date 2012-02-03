@@ -175,6 +175,7 @@ INSTALLED_APPS = [
     "about",
     "profiles",
     "masomo",
+    "api",
 ]
 
 FIXTURE_DIRS = [
