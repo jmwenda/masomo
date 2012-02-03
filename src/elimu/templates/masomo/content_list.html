@@ -5,7 +5,7 @@
     <a href="{% url content-form %}">New</a>
     <ul>
         {% for subjects in object_list %}
-            <li>{{ subjects.title }}</li>
+            <li>{{ subjects.description }}</li>
         {% endfor %}
     </ul>
 {% endblock %}

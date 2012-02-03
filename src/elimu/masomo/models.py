@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from smart_selects.db_fields import ChainedForeignKey,GroupedForeignKey 
 
 # Create your models here.
 #we extend the django profiles class to hold more information
@@ -87,6 +88,8 @@ class Topic(models.Model):
 class Page(models.Model):
         topic = models.ForeignKey(Topic)
         pagelabel = models.CharField("Label", max_length=25)
+        def __unicode__(self):
+                return  self.pagelabel
         @models.permalink
         def get_absolute_url(self):
                 return ('pages',(),{})
@@ -98,13 +101,15 @@ class ContentType(models.Model):
         def __unicode__(self):
 		return self.name
 class Content(models.Model):
-	title = models.CharField("Title", max_length=45)
+        subject = models.ForeignKey(Subject)
+        chapter = ChainedForeignKey(Chapter, chained_field="subject", chained_model_field="subject")
+        topic = ChainedForeignKey(Topic,chained_field="chapter",chained_model_field="chapter")
+        page = ChainedForeignKey(Page,chained_field="topic",chained_model_field="topic")
 	description = models.TextField("Description", max_length=255)
-	value = models.TextField("Value", max_length=255)
-        resource = models.FileField(upload_to='resources')
-        page = models.ForeignKey(Page)
+	value = models.TextField("Value", max_length=255) 
+        resource = models.FileField(upload_to='resources',blank="true")
         def __unicode__(self):
-		return self.title
+		return self.description
         @models.permalink
         def get_absolute_url(self):
                 return ('content',(),{})
