@@ -21,7 +21,7 @@ v1_api = Api(api_name='masomo')
 v1_api.register(EntryResource())
 v1_api.register(SubjectResource())
 v1_api.register(TopicResource())
-v1_api.register(chapterResource())
+v1_api.register(ChapterResource())
 v1_api.register(PageResource())
 
 
