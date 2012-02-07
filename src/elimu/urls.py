@@ -4,6 +4,10 @@ from django.views.generic.simple import direct_to_template
 from django.views.generic import ListView,CreateView
 from masomo.models import Subject,Chapter,Topic,Page,Content
 
+
+from tastypie.api import Api
+from masomo.api import EntryResource
+
 from django.contrib import admin
 admin.autodiscover()
 
@@ -12,6 +16,9 @@ from pinax.apps.account.openid_consumer import PinaxConsumer
 
 handler500 = "pinax.views.server_error"
 
+
+v1_api = Api(api_name='masomo')
+v1_api.register(EntryResource())
 
 urlpatterns = patterns("",
     url(r"^$", direct_to_template, {
@@ -36,9 +43,8 @@ urlpatterns = patterns("",
     url(r"^notices/", include("notification.urls")),
     url(r"^announcements/", include("announcements.urls")),
     url(r'^chaining/', include('smart_selects.urls')),
-    url(r'^api/', include('api.urls')),
+    url(r'^api/', include(v1_api.urls)),
 )
-
 
 if settings.SERVE_MEDIA:
     urlpatterns += patterns("",

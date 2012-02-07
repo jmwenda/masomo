@@ -175,7 +175,8 @@ INSTALLED_APPS = [
     "about",
     "profiles",
     "masomo",
-    "api",
+    "tastypie",
+    #"api",
 ]
 
 FIXTURE_DIRS = [
