@@ -19,7 +19,7 @@ class TopicResource(ModelResource):
         resource_name = 'topic'
 class ChapterResource(ModelResource):
     class Meta:
-        queryset = chapter.objects.all()
+        queryset = Chapter.objects.all()
         resource_name = 'chapter'
 
 class PageResource(ModelResource):
