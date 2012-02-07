@@ -6,7 +6,7 @@ from masomo.models import Subject,Chapter,Topic,Page,Content
 
 
 from tastypie.api import Api
-from masomo.api import EntryResource
+from masomo.api import EntryResource,SubjectResource,TopicResource,ChapterResource,PageResource
 
 from django.contrib import admin
 admin.autodiscover()
@@ -19,6 +19,12 @@ handler500 = "pinax.views.server_error"
 
 v1_api = Api(api_name='masomo')
 v1_api.register(EntryResource())
+v1_api.register(SubjectResource())
+v1_api.register(TopicResource())
+v1_api.register(chapterResource())
+v1_api.register(PageResource())
+
+
 
 urlpatterns = patterns("",
     url(r"^$", direct_to_template, {

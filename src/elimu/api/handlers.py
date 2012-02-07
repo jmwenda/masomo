@@ -38,9 +38,9 @@ class AnonymousDeviceHandler(DeviceHandler, AnonymousBaseHandler):
 class ContentHandler(BaseHandler):
     model = Content
     allowed_methods = ('GET',)
-
+    fields = ('subject')
     @classmethod
     def read(self,request):
         "return all the content on the platfrom, will need to add post handlers to deal with variables"
         base = Content.objects
-        return base.all()    
+        return base.get()
